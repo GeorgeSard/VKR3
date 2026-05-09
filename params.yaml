@@ -1,0 +1,57 @@
+data:
+  raw_path: data/raw/flight_delays_ru_synthetic_2023_2025.csv
+  cleaned_path: data/interim/cleaned_flights.csv
+  features_path: data/processed/features.csv
+  date_column: flight_date
+
+split:
+  strategy: time_based
+  train_size: 0.7
+  val_size: 0.15
+  test_size: 0.15
+  random_state: 42
+
+target:
+  delay_threshold_minutes: 15
+
+features:
+  categorical:
+    - airline_code
+    - origin_airport
+    - destination_airport
+    - route
+    - aircraft_type
+    - day_of_week
+    - season
+    - weather_origin
+    - weather_destination
+  numeric:
+    - distance_km
+    - planned_duration_min
+    - departure_hour
+    - month
+    - is_weekend
+    - temperature_origin_c
+    - wind_speed_origin_mps
+    - precipitation_origin_mm
+    - visibility_origin_km
+    - airport_load_index
+    - airline_load_factor
+    - previous_flight_delay_min
+    - route_avg_delay_min
+    - aircraft_age_years
+    - technical_check_required
+    - crew_change_required
+
+delay_model:
+  model_type: random_forest
+  n_estimators: 200
+  max_depth: 10
+  threshold: 0.5
+  class_weight: balanced
+
+reason_model:
+  model_type: random_forest
+  n_estimators: 200
+  max_depth: 10
+  class_weight: balanced

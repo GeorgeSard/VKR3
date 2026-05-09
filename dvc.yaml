@@ -1,0 +1,56 @@
+stages:
+  prepare:
+    cmd: python src/prepare_data.py
+    deps:
+      - data/raw/flight_delays_ru_synthetic_2023_2025.csv
+      - src/prepare_data.py
+    params:
+      - data
+      - target
+    outs:
+      - data/interim/cleaned_flights.csv
+
+  featurize:
+    cmd: python src/make_features.py
+    deps:
+      - data/interim/cleaned_flights.csv
+      - src/make_features.py
+    params:
+      - data
+      - target
+      - features
+    outs:
+      - data/processed/features.csv
+
+  train_delay:
+    cmd: python src/train_delay.py
+    deps:
+      - data/processed/features.csv
+      - src/train_delay.py
+      - src/evaluate.py
+    params:
+      - data
+      - features
+      - split
+      - target
+      - delay_model
+    outs:
+      - models/delay_model
+    metrics:
+      - reports/metrics/delay_metrics.json
+
+  train_reason:
+    cmd: python src/train_reason.py
+    deps:
+      - data/processed/features.csv
+      - src/train_reason.py
+      - src/evaluate.py
+    params:
+      - data
+      - features
+      - split
+      - reason_model
+    outs:
+      - models/reason_model
+    metrics:
+      - reports/metrics/reason_metrics.json

@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+pandas
+scikit-learn
+mlflow
+dvc
+python-multipart
+prometheus-client
+docker
+matplotlib
+pyyaml
+joblib
