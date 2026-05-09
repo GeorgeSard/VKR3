@@ -72,6 +72,8 @@ password: admin
 dashboard: Dashboards -> Flight Delay ML -> Flight Delay ML Demo
 ```
 
+MLflow в Docker Compose запущен с `--allowed-hosts "*"`. Это локальная учебная настройка для Docker network, не production-конфигурация.
+
 Prometheus targets:
 
 ```text
