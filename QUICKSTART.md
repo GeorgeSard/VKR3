@@ -58,7 +58,7 @@ docker compose up -d --build
 ```text
 FastAPI Swagger: http://localhost:8000/docs
 FastAPI health:  http://localhost:8000/health
-MLflow:          http://localhost:5000
+MLflow:          http://localhost:5001
 Prometheus:      http://localhost:9090
 Grafana:         http://localhost:3000
 cAdvisor:        http://localhost:8080
@@ -88,7 +88,7 @@ curl -X POST http://localhost:8000/train \
   -d '{"dataset_id":"default","model_type":"random_forest","hyperparameters":{}}'
 ```
 
-После завершения обнови `http://localhost:5000`.
+После завершения обнови `http://localhost:5001`.
 
 ## 5. Проверить прогноз
 

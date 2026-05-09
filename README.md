@@ -153,16 +153,16 @@ prepare -> featurize -> train_delay
 
 При установленном `mlflow` обучение логирует параметры, метрики, артефакты и модели в эксперимент `flight-delay-vkr`.
 
-Локальный запуск UI:
+Локальный запуск UI без Docker:
 
 ```bash
 mlflow ui --host 0.0.0.0 --port 5000
 ```
 
-В Docker Compose MLflow доступен на:
+В Docker Compose MLflow доступен на внешнем порту `5001`, потому что на macOS порт `5000` часто занят системным процессом:
 
 ```text
-http://localhost:5000
+http://localhost:5001
 ```
 
 Для первой модели логируются `precision`, `recall`, `f1`, `ROC-AUC`, `PR-AUC`, threshold, confusion matrix и feature importance. Основная метрика - `f1`.
@@ -243,7 +243,7 @@ docker compose up -d --build
 
 ```text
 FastAPI:     http://localhost:8000
-MLflow:      http://localhost:5000
+MLflow:      http://localhost:5001
 Prometheus:  http://localhost:9090
 Grafana:     http://localhost:3000
 cAdvisor:    http://localhost:8080
