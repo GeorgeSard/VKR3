@@ -13,6 +13,9 @@ mlflow/
 mlflow.db
 .dvc/cache/
 
+reports/metrics/delay_metrics.json
+reports/metrics/reason_metrics.json
+
 models/delay_model/*
 models/reason_model/*
 !models/delay_model/.gitkeep
