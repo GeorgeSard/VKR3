@@ -1,6 +1,7 @@
 services:
   api:
     build: .
+    image: flight-delay-api:latest
     container_name: flight-delay-api
     ports:
       - "8000:8000"
@@ -15,7 +16,8 @@ services:
       - mlflow
 
   mlflow:
-    image: ghcr.io/mlflow/mlflow:v2.16.2
+    build: .
+    image: flight-delay-api:latest
     container_name: flight-delay-mlflow
     ports:
       - "5000:5000"
